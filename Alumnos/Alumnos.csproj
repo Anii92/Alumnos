@@ -48,11 +48,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alumno.cs" />
+    <Compile Include="AlumnoController.cs" />
     <Compile Include="Configuracion.cs" />
+    <Compile Include="ConfiguracionController.cs" />
+    <Compile Include="Enums\TiposFichero.cs" />
     <Compile Include="Enums\TiposPersona.cs" />
-    <Compile Include="Fichero.cs" />
+    <Compile Include="Factories\FicheroFactory.cs" />
+    <Compile Include="FicheroJson.cs" />
+    <Compile Include="FicheroTxt.cs" />
+    <Compile Include="Interfaces\IFichero.cs" />
     <Compile Include="Persona.cs" />
-    <Compile Include="PersonaFactory.cs" />
+    <Compile Include="Factories\PersonaFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
