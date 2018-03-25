@@ -13,13 +13,11 @@ namespace Alumnos
     {
         public string Nombre { get; set; }
         public string Ruta { get; set; }
-        public string Extension { get; set; }
 
         public FicheroTxt(string nombre, string ruta)
         {
             this.Nombre = nombre;
             this.Ruta = ruta;
-            this.Extension = ConfigurationManager.AppSettings["ExtensionFichero"];
         }
 
         public void Guardar(Alumno alumno)

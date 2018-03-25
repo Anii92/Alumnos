@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Alumnos
 {
-    public abstract class Persona
+    public abstract class Persona : IEquatable<Persona>
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -19,6 +19,12 @@ namespace Alumnos
             this.Nombre = nombre;
             this.Apellidos = apellidos;
             this.Dni = dni;
+        }
+
+        public bool Equals(Persona other)
+        {
+            if (other == null) return false;
+            return this.Id == other.Id && this.Nombre == other.Nombre && this.Apellidos == other.Apellidos && this.Dni == other.Dni;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Alumnos.Factories
 {
     public class FicheroFactory
     {
-        public static Object CrearFichero(TipoFichero tipoFichero, string nombre)
+        public Object CrearFichero(TipoFichero tipoFichero, string nombre)
         {
             switch (tipoFichero)
             {

@@ -12,7 +12,7 @@ namespace Alumnos
     {
         public ConfiguracionController()
         {
-            CrearConfiguracionFichero(".txt");
+            CrearConfiguracionFichero("Texto");
         }
 
         public void OpcionesConfiguracion()
@@ -34,7 +34,7 @@ namespace Alumnos
             }
         }
 
-        private void CrearConfiguracionFichero(string valor)
+        public void CrearConfiguracionFichero(string valor)
         {
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings[Alumnos.Configuracion.ExtensionFichero]))
             {
