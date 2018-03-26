@@ -22,10 +22,11 @@ namespace Alumnos.Tests
             Assert.IsTrue(ruta == ficheroJson.Ruta);
         }
 
-        [TestMethod()]
-        public void GuardarJsonTest()
+        [DataRow(1, "Leia", "Organa", "1234")]
+        [DataTestMethod]
+        public void GuardarJsonTest(int id, string nombre, string apellidos, string dni)
         {
-            Alumno alumno = new Alumno(1, "Leia", "Organa", "1234");
+            Alumno alumno = new Alumno(id, nombre, apellidos, dni);
             FicheroJson ficheroJson = new FicheroJson("ListadoDeAlumnos.json", System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json"));
             ficheroJson.Guardar(alumno);
             Assert.IsTrue(File.Exists(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json")));
