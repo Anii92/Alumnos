@@ -8,9 +8,9 @@ using static Alumnos.Enums.TiposPersona;
 
 namespace Alumnos
 {
-    public static class PersonaFactory
+    public class PersonaFactory
     {
-        public static Persona CrearPersona(TiposPersona.TipoPersona tipoPersona, int id, string nombre, string apellidos, string dni)
+        public Persona CrearPersona(TiposPersona.TipoPersona tipoPersona, int id, string nombre, string apellidos, string dni)
         {
             switch(tipoPersona)
             {

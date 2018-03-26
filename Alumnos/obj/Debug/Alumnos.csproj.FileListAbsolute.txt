@@ -8,3 +8,13 @@ C:\Users\ana.jayme\source\repos\Calculadora\Alumnos\Alumnos\obj\Debug\Alumnos.cs
 C:\Users\ana.jayme\source\repos\Calculadora\Alumnos\Alumnos\obj\Debug\Alumnos.exe
 C:\Users\ana.jayme\source\repos\Calculadora\Alumnos\Alumnos\obj\Debug\Alumnos.pdb
 C:\Users\ana.jayme\source\repos\Calculadora\Alumnos\Alumnos\obj\Debug\Alumnos.csprojResolveAssemblyReference.cache
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\bin\Debug\Alumnos.exe.config
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\bin\Debug\Alumnos.exe
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\bin\Debug\Alumnos.pdb
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\obj\Debug\Alumnos.csprojResolveAssemblyReference.cache
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\obj\Debug\Alumnos.csproj.CoreCompileInputs.cache
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\obj\Debug\Alumnos.csproj.CopyComplete
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\obj\Debug\Alumnos.exe
+C:\Users\ana.jayme\Documents\Alumnos\Alumnos\obj\Debug\Alumnos.pdb

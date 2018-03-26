@@ -15,10 +15,12 @@ namespace Alumnos
     {
         private IFichero fichero;
         private FicheroFactory ficheroFactory;
+        private PersonaFactory personaFactory;
 
         public AlumnoController()
         {
             ficheroFactory = new FicheroFactory();
+            personaFactory = new PersonaFactory();
         }
 
         public void CrearAlumno()
@@ -32,7 +34,7 @@ namespace Alumnos
             Console.WriteLine("El alumno se ha creado correctamente");
         }
 
-        public static Alumno CrearNuevoAlumno()
+        public Alumno CrearNuevoAlumno()
         {
             Console.WriteLine("Crea un alumno");
             Console.WriteLine("Introduce el identificador");
@@ -43,7 +45,7 @@ namespace Alumnos
             string idApellidos = Console.ReadLine();
             Console.WriteLine("Introduce el dni");
             string idDni = Console.ReadLine();
-            Alumno alumno = (Alumno)PersonaFactory.CrearPersona(TipoPersona.Alumno, Convert.ToInt32(idAlumno), idNombre, idApellidos, idDni);
+            Alumno alumno = (Alumno)personaFactory.CrearPersona(TipoPersona.Alumno, Convert.ToInt32(idAlumno), idNombre, idApellidos, idDni);
             //Alumno a = new Alumno(Convert.ToInt32(idAlumno), idNombre, idApellidos, idDni);
             return alumno;
         }
