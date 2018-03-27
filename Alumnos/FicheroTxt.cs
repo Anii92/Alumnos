@@ -20,20 +20,23 @@ namespace Alumnos
             this.Ruta = ruta;
         }
 
+        public string ToString(Alumno alumno)
+        {
+            return alumno.Id + "," + alumno.Nombre + "," + alumno.Apellidos + "," + alumno.Dni + "," + alumno.Alumno_Guid;
+        }
+
         public void Guardar(Alumno alumno)
         {
-            // This text is added only once to the file.
             if (!File.Exists(this.Ruta))
             {
-                // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(this.Ruta))
                 {
-                    sw.WriteLine(alumno.Id + "," + alumno.Nombre + "," + alumno.Apellidos + "," + alumno.Dni);
+                    sw.WriteLine(ToString(alumno));
                 }
             }
             else
             {
-                File.AppendAllText(this.Ruta, alumno.Id + "," + alumno.Nombre + "," + alumno.Apellidos + "," + alumno.Dni + Environment.NewLine);
+                File.AppendAllText(this.Ruta, ToString(alumno) + Environment.NewLine);
             }
         }
     }

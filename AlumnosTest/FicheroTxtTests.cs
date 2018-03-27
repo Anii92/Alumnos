@@ -12,32 +12,36 @@ namespace Alumnos.Tests
     [TestClass()]
     public class FicheroTxtTests
     {
-        [DataRow("MiPrimerFicheroTxt.txt", "C://Documentos")]
-        [DataTestMethod]
-        public void FicheroTxtTest(string nombre, string ruta)
+        [TestInitialize]
+        public void Initialize()
         {
-            FicheroTxt ficheroTxt = new FicheroTxt(nombre, ruta);
-            Assert.IsTrue(nombre == ficheroTxt.Nombre);
-            Assert.IsTrue(ruta == ficheroTxt.Ruta);
+            ConfiguracionController configuracionController = new ConfiguracionController();
+            configuracionController.EliminarConfiguracion();
+            configuracionController.CrearConfiguracionFichero("Texto");
+            string pathFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.txt");
+            if (File.Exists(pathFile))
+            {
+                File.Delete(pathFile);
+            }
         }
 
-        [TestMethod()]
-        public void GuardarTxtTest()
+        [DataRow(1, "Leia", "Organa", "1234")]
+        [DataTestMethod]
+        public void GuardarTxtTest(int id, string nombre, string apellidos, string dni)
         {
+            string pathFichero = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.txt");
             Alumno alumno = new Alumno(1, "Leia", "Organa", "1234");
-            FicheroTxt ficheroTxt = new FicheroTxt("ListadoDeAlumnos.txt", System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.txt"));
+            FicheroTxt ficheroTxt = new FicheroTxt("ListadoDeAlumnos.txt", pathFichero);
             ficheroTxt.Guardar(alumno);
-            Assert.IsTrue(File.Exists(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.txt")));
-            bool alumnoInsertado = false;
-            foreach (var line in File.ReadAllLines(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.txt")))
+            Assert.IsTrue(File.Exists(pathFichero));
+
+            string[] liniaFichero = null;
+            foreach (var line in File.ReadAllLines(pathFichero))
             {
-                if (line.Contains("1") && line.Contains("Leia") && line.Contains("Organa") && line.Contains("1234"))
-                {
-                    alumnoInsertado = true;
-                    break;
-                }
+                liniaFichero = line.Split(',');
             }
-            Assert.IsTrue(alumnoInsertado);
+            Alumno alumnoFichero = new Alumno(Convert.ToInt32(liniaFichero[0]), liniaFichero[1], liniaFichero[2], liniaFichero[3], liniaFichero[4]);
+            Assert.IsTrue(alumno.Equals(alumnoFichero));
         }
     }
 }

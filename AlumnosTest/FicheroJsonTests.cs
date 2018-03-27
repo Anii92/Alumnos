@@ -7,44 +7,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace Alumnos.Tests
 {
     [TestClass()]
     public class FicheroJsonTests
     {
-        [DataRow("MiPrimerFicheroJson.json", "C://Documentos")]
-        [DataTestMethod]
-        public void FicheroJsonTest(string nombre, string ruta)
+        [TestInitialize]
+        public void Initialize()
         {
-            FicheroJson ficheroJson = new FicheroJson(nombre, ruta);
-            Assert.IsTrue(nombre == ficheroJson.Nombre);
-            Assert.IsTrue(ruta == ficheroJson.Ruta);
+            ConfiguracionController configuracionController = new ConfiguracionController();
+            configuracionController.EliminarConfiguracion();
+            configuracionController.CrearConfiguracionFichero("Json");
+            string pathFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json");
+            if (File.Exists(pathFile))
+            {
+                File.Delete(pathFile);
+            }
         }
 
         [DataRow(1, "Leia", "Organa", "1234")]
         [DataTestMethod]
         public void GuardarJsonTest(int id, string nombre, string apellidos, string dni)
         {
+            string pathFichero = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json");
             Alumno alumno = new Alumno(id, nombre, apellidos, dni);
-            FicheroJson ficheroJson = new FicheroJson("ListadoDeAlumnos.json", System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json"));
+            FicheroJson ficheroJson = new FicheroJson("ListadoDeAlumnos.json", pathFichero);
             ficheroJson.Guardar(alumno);
-            Assert.IsTrue(File.Exists(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json")));
+            Assert.IsTrue(File.Exists(pathFichero));
 
-            bool alumnoEncontrado = false;
-            var jsonData = System.IO.File.ReadAllText(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "ListadoDeAlumnos.json"));
-            var alumnosList = JsonConvert.DeserializeObject<List<Alumno>>(jsonData);
-            foreach(var al in alumnosList)
-            {
-                if (alumno.Equals(al))
-                {
-                    alumnoEncontrado = true;
-                    break;
-                }
-            }
-            Assert.IsTrue(alumnoEncontrado);
+            var jsonData = System.IO.File.ReadAllText(pathFichero);
+            List<Alumno> alumnosList = JsonConvert.DeserializeObject<List<Alumno>>(jsonData);
+            Alumno alumnoFichero = new Alumno(alumnosList[0].Id, alumnosList[0].Nombre, alumnosList[0].Apellidos, alumnosList[0].Dni, alumnosList[0].Alumno_Guid);
+            Assert.IsTrue(alumno.Equals(alumnoFichero));
         }
-
-        
     }
 }

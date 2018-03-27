@@ -52,7 +52,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlumnoIntegrationTest.cs" />
     <Compile Include="ConfiguracionControllerTests.cs" />
     <Compile Include="Factories\FicheroFactoryTests.cs" />
     <Compile Include="Factories\PersonaFactoryTests.cs" />

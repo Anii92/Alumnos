@@ -46,7 +46,6 @@ namespace Alumnos
             Console.WriteLine("Introduce el dni");
             string idDni = Console.ReadLine();
             Alumno alumno = (Alumno)personaFactory.CrearPersona(TipoPersona.Alumno, Convert.ToInt32(idAlumno), idNombre, idApellidos, idDni);
-            //Alumno a = new Alumno(Convert.ToInt32(idAlumno), idNombre, idApellidos, idDni);
             return alumno;
         }
     }

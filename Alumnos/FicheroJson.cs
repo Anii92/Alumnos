@@ -21,6 +21,13 @@ namespace Alumnos
             this.Ruta = ruta;
         }
 
+        public string ToJson(string data, Alumno alumno)
+        {
+            var employeeList = JsonConvert.DeserializeObject<List<Alumno>>(data);
+            employeeList.Add(alumno);
+            return JsonConvert.SerializeObject(employeeList, Formatting.Indented);
+        }
+
         public void Guardar(Alumno alumno)
         {
             if (!File.Exists(this.Ruta))
@@ -35,15 +42,8 @@ namespace Alumnos
             }
             else
             {
-                var jsonData = System.IO.File.ReadAllText(this.Ruta);
-                // De-serialize to object or create new list
-                var employeeList = JsonConvert.DeserializeObject<List<Alumno>>(jsonData);
-
-                // Add any new employees
-                employeeList.Add(alumno);
-
-                // Update json data string
-                jsonData = JsonConvert.SerializeObject(employeeList, Formatting.Indented);
+                string datosFichero = System.IO.File.ReadAllText(this.Ruta);
+                string jsonData = this.ToJson(datosFichero, alumno);
                 System.IO.File.WriteAllText(this.Ruta, jsonData);
             }
         }

@@ -53,6 +53,18 @@ namespace Alumnos
             ConfigurationManager.RefreshSection("appSettings");
         }
 
+        public void EliminarConfiguracion()
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            
+            for (int i = 0; i < config.AppSettings.Settings.Count; ++i)
+            {
+                config.AppSettings.Settings.Remove(Alumnos.Configuracion.ExtensionFichero);
+            }
+            config.Save(ConfigurationSaveMode.Modified, true);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
         private void MostrarOpcionesConfiguracion()
         {
             Console.WriteLine("¿En qué formato quieres serializar el alumno?");
